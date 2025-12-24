@@ -1,4 +1,4 @@
-export type APIResponseCharacters = {
+export type APIResponseCharacter = {
   id: string;
   name: string;
   alternate_names: string[];
@@ -25,7 +25,7 @@ export type APIResponseCharacters = {
   image: string;
 };
 
-export type Character = APIResponseCharacters;
+export type Character = APIResponseCharacter;
 
 export enum FilterTypeEnum {
   ALL = "all",

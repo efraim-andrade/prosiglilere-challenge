@@ -1,14 +1,14 @@
 import { api } from "@/lib/api";
-import type { APIResponseCharacters } from "@/types/characters";
+import type { APIResponseCharacter } from "@/types/characters";
 
 export async function getCharacters() {
-  const data = await api<APIResponseCharacters[]>({ endpoint: "characters" });
+  const data = await api<APIResponseCharacter[]>({ endpoint: "characters" });
 
   return data;
 }
 
 export async function getStaff() {
-  const data = await api<APIResponseCharacters[]>({
+  const data = await api<APIResponseCharacter[]>({
     endpoint: "characters/staff",
   });
 
@@ -16,9 +16,17 @@ export async function getStaff() {
 }
 
 export async function getStudents() {
-  const data = await api<APIResponseCharacters[]>({
+  const data = await api<APIResponseCharacter[]>({
     endpoint: "characters/students",
   });
 
   return data;
+}
+
+export async function getCharacterById(id: string) {
+  const data = await api<APIResponseCharacter[]>({
+    endpoint: `character/${id}`,
+  });
+
+  return data[0];
 }
