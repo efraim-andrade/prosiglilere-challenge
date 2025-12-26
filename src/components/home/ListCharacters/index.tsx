@@ -69,7 +69,7 @@ export function ListCharacters({ characters }: ListCharactersProps) {
 
   return (
     <div>
-      {!!favorites && (
+      {favorites.length > 0 && (
         <>
           <h5 className="font-bold text-lg mb-2">Favorites</h5>
 

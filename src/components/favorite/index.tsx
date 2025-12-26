@@ -50,6 +50,7 @@ export function Favorite({
 
   return (
     <Button
+      aria-label={isFavorite ? "Remove from favorites" : "Add to favorites"}
       onClick={() => handleFavorite(id)}
       variant="ghost"
       className={styles.button({
