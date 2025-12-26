@@ -1,10 +1,12 @@
+import type { HousesEnum } from "@/types/houses";
+
 export type APIResponseCharacter = {
   id: string;
   name: string;
   alternate_names: string[];
   species: string;
   gender: string;
-  house: "Gryffindor" | "Hufflepuff" | "Ravenclaw" | "Slytherin" | "Unknown";
+  house: HousesEnum;
   dateOfBirth: string;
   yearOfBirth: number;
   wizard: boolean;
