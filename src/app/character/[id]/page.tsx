@@ -58,27 +58,30 @@ export default async function CharacterPage({
   const { id } = await params;
   const character = await getCharacterById(id);
 
-  const backgroundVariants = cva("p-10 flex items-center flex-col h-[calc(100vh-60px)]", {
-    variants: {
-      house: {
-        Gryffindor: "bg-gryffindor/60 bg-cover text-red-950",
-        Hufflepuff: "bg-hufflepuff/60 bg-cover text-yellow-950",
-        Ravenclaw: "bg-ravenclaw/60 bg-cover text-blue-950",
-        Slytherin: "bg-slytherin/60 bg-cover text-green-950",
-        Unknown: "",
-      }
+  const backgroundVariants = cva(
+    "p-10 flex items-center flex-col min-h-[calc(100vh-60px)]",
+    {
+      variants: {
+        house: {
+          Gryffindor: "bg-gryffindor/60 bg-cover text-red-950",
+          Hufflepuff: "bg-hufflepuff/60 bg-cover text-yellow-950",
+          Ravenclaw: "bg-ravenclaw/60 bg-cover text-blue-950",
+          Slytherin: "bg-slytherin/60 bg-cover text-green-950",
+          Unknown: "",
+        },
+      },
+      defaultVariants: {
+        house: "Unknown",
+      },
     },
-    defaultVariants: {
-      house: "Unknown",
-    },
-  });
+  );
 
   if (!character) {
     notFound();
   }
 
   return (
-    <main className={cn(backgroundVariants({ house: character.house}))}>
+    <main className={cn(backgroundVariants({ house: character.house }))}>
       {character.image && (
         <Image
           src={character.image}

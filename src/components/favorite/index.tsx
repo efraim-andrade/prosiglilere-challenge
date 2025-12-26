@@ -4,22 +4,25 @@ import { cva } from "class-variance-authority";
 import { Star, StarOff } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { HousesEnum } from "@/types/houses";
+import { cn } from "@/lib/utils";
 
 type FavoriteProps = {
   isFavorite: boolean;
-  characterHouse: HousesEnum;
-  characterId: string;
+  house?: HousesEnum;
+  id: string;
   handleFavorite: (id: string) => void;
+  className?: string;
 };
 
 export function Favorite({
   isFavorite,
-  characterHouse,
-  characterId,
+  house,
+  id,
   handleFavorite,
+  className,
 }: FavoriteProps) {
   const styles = {
-    button: cva("ml-auto", {
+    button: cva(cn(className, "ml-auto"), {
       variants: {
         house: {
           [HousesEnum.GRYFFINDOR]: "bg-gryffindor/40 hover:bg-gryffindor/90",
@@ -34,7 +37,7 @@ export function Favorite({
       variants: {
         color: {
           gold:
-            characterHouse === HousesEnum.HUFFLEPUFF
+            house === HousesEnum.HUFFLEPUFF
               ? "text-yellow-900"
               : "text-yellow-300",
           black: "text-zinc-800",
@@ -43,14 +46,14 @@ export function Favorite({
     }),
   };
 
-  const StarIcon = isFavorite ? Star : StarOff;
+  const StarIcon = isFavorite ? StarOff : Star;
 
   return (
     <Button
-      onClick={() => handleFavorite(characterId)}
+      onClick={() => handleFavorite(id)}
       variant="ghost"
       className={styles.button({
-        house: characterHouse || HousesEnum.UNKNOWN,
+        house: house || HousesEnum.UNKNOWN,
       })}
     >
       <StarIcon

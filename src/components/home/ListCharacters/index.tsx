@@ -15,6 +15,12 @@ export function ListCharacters({ characters }: ListCharactersProps) {
   );
 
   const handleFavorite = (id: string) => {
+    if (currentFavorite === id) {
+      localStorage.removeItem(LocalStorageEnum.FAVORITE_CHARACTER);
+
+      return setCurrentFavorite("");
+    }
+
     localStorage.removeItem(LocalStorageEnum.FAVORITE_CHARACTER);
 
     localStorage.setItem(LocalStorageEnum.FAVORITE_CHARACTER, id);

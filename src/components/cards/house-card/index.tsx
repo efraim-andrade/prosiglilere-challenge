@@ -24,9 +24,9 @@ export function HouseCard({
         </div>
 
         <Favorite
+          id={house.name}
+          house={house.name}
           isFavorite={isFavorite}
-          characterHouse={house.name}
-          characterId={house.id}
           handleFavorite={handleFavorite}
         />
       </CardContent>

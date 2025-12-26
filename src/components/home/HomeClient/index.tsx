@@ -1,5 +1,6 @@
 "use client";
 
+import { cva } from "class-variance-authority";
 import { AlertCircle, Loader2 } from "lucide-react";
 import { useState } from "react";
 import { Filters } from "@/components/home/Filters";
@@ -7,17 +8,21 @@ import { ListCharacters } from "@/components/home/ListCharacters";
 import { ListHouses } from "@/components/home/ListHouses";
 import { Button } from "@/components/ui/button";
 import { useCharacters } from "@/hooks/useCharacters";
+import { useTheme } from "@/hooks/useTheme";
 import {
   type Character,
   type FilterType,
   FilterTypeEnum,
 } from "@/types/characters";
+import { HousesEnum } from "@/types/houses";
 
 type HomeClientProps = {
   initialCharacters: Character[];
 };
 
 export function HomeClient({ initialCharacters }: HomeClientProps) {
+  const { currentTheme } = useTheme();
+
   const [filter, setFilter] = useState<FilterType>(FilterTypeEnum.ALL);
 
   const {
@@ -39,8 +44,22 @@ export function HomeClient({ initialCharacters }: HomeClientProps) {
     return characters;
   })();
 
+  const homeVariants = cva("p-10 min-h-[calc(100vh-60px)]", {
+    variants: {
+      house: {
+        [HousesEnum.GRYFFINDOR]: "bg-gryffindor/20",
+        [HousesEnum.HUFFLEPUFF]: "bg-hufflepuff/20",
+        [HousesEnum.RAVENCLAW]: "bg-ravenclaw/20",
+        [HousesEnum.SLYTHERIN]: "bg-slytherin/20",
+        [HousesEnum.UNKNOWN]: "bg-white border-gray-200",
+      },
+    },
+  });
+
   return (
-    <main className="p-10">
+    <main
+      className={homeVariants({ house: currentTheme || HousesEnum.UNKNOWN })}
+    >
       <div>
         <h2 className="text-2xl font-bold mb-4">Houses</h2>
 

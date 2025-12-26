@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Favorite } from "@/components/favorite";
 import { Card, CardContent, CardTitle } from "@/components/ui/card";
+import { cn } from "@/lib/utils";
 import type { Character } from "@/types/characters";
 
 type CharacterCardProps = {
@@ -20,11 +21,11 @@ export function CharacterCard({
   className,
 }: CharacterCardProps) {
   return (
-    <Card house={character.house} className={className}>
-      <CardContent className="flex items-center p-0">
+    <Card house={character.house} className={cn("p-0", className)}>
+      <CardContent className="flex items-center p-0 relative">
         <Link
           href={`/character/${character.id}`}
-          className="flex items-center gap-4 p-0"
+          className="flex items-center gap-4 p-4 w-full"
         >
           {character.image ? (
             <Image
@@ -41,7 +42,7 @@ export function CharacterCard({
             <div
               role="img"
               aria-label="empty character image"
-              className="w-12 h-12 rounded-full bg-gray-200 flex items-center justify-center text-gray-500"
+              className="w-12 h-12 rounded-full bg-gray-400/40 flex items-center justify-center"
             />
           )}
 
@@ -52,9 +53,10 @@ export function CharacterCard({
 
         <Favorite
           isFavorite={isFavorite}
-          characterHouse={character.house}
-          characterId={character.id}
+          house={character.house}
+          id={character.id}
           handleFavorite={handleFavorite}
+          className="absolute right-4"
         />
       </CardContent>
     </Card>

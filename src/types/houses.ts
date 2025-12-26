@@ -7,6 +7,5 @@ export enum HousesEnum {
 }
 
 export type Houses = {
-  id: string;
   name: HousesEnum;
 };
