@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import Link from "next/link";
+import { Header } from "@/components/header";
 import { QueryProvider } from "@/lib/query-client";
 
 const geistSans = Geist({
@@ -35,15 +35,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <QueryProvider>
-          <header className="relative flex items-center justify-center w-full border-b border-gray-200 bg-white px-4 py-3 shadow-sm">
-            <Link href="/" className="absolute left-4">
-              GoBack
-            </Link>
-
-            <h1 className="text-lg font-semibold text-center">
-              Harry Potter Characters
-            </h1>
-          </header>
+          <Header />
 
           {children}
         </QueryProvider>
