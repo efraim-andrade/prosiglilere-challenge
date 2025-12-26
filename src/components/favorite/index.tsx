@@ -3,8 +3,8 @@
 import { cva } from "class-variance-authority";
 import { Star, StarOff } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { HousesEnum } from "@/types/houses";
 import { cn } from "@/lib/utils";
+import { HousesEnum } from "@/types/houses";
 
 type FavoriteProps = {
   isFavorite: boolean;
@@ -15,11 +15,11 @@ type FavoriteProps = {
 };
 
 export function Favorite({
-  isFavorite,
-  house,
   id,
-  handleFavorite,
+  house,
   className,
+  isFavorite,
+  handleFavorite,
 }: FavoriteProps) {
   const styles = {
     button: cva(cn(className, "ml-auto"), {

@@ -9,7 +9,7 @@ import { useTheme } from "@/hooks/useTheme";
 import { HousesEnum } from "@/types/houses";
 
 export function Header() {
-  const { currentTheme } = useTheme();
+  const { currentHouse } = useTheme();
   const pathname = usePathname();
 
   const isHomePage = pathname === "/";
@@ -31,7 +31,7 @@ export function Header() {
 
   return (
     <header
-      className={headerVariants({ house: currentTheme || HousesEnum.UNKNOWN })}
+      className={headerVariants({ house: currentHouse || HousesEnum.UNKNOWN })}
     >
       {isHomePage ? null : (
         <Button variant="link" className="absolute left-4">

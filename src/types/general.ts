@@ -1,4 +1,4 @@
 export enum LocalStorageEnum {
-  FAVORITE_CHARACTER = "favoriteCharacter",
+  FAVORITE_CHARACTERS = "favoriteCharacters",
   FAVORITE_HOUSE = "favoriteHouse",
 }

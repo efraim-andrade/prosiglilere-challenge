@@ -21,7 +21,7 @@ type HomeClientProps = {
 };
 
 export function HomeClient({ initialCharacters }: HomeClientProps) {
-  const { currentTheme } = useTheme();
+  const { currentHouse } = useTheme();
 
   const [filter, setFilter] = useState<FilterType>(FilterTypeEnum.ALL);
 
@@ -58,7 +58,7 @@ export function HomeClient({ initialCharacters }: HomeClientProps) {
 
   return (
     <main
-      className={homeVariants({ house: currentTheme || HousesEnum.UNKNOWN })}
+      className={homeVariants({ house: currentHouse || HousesEnum.UNKNOWN })}
     >
       <div>
         <h2 className="text-2xl font-bold mb-4">Houses</h2>

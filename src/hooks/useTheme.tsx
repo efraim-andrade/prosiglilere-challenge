@@ -1,12 +1,12 @@
 "use client";
 
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { LocalStorageEnum } from "@/types/general";
 import { HousesEnum } from "@/types/houses";
 
 type UseThemeData = {
-  currentTheme: HousesEnum;
-  setCurrentTheme: React.Dispatch<React.SetStateAction<HousesEnum>>;
+  currentHouse: HousesEnum;
+  setCurrentHouse: React.Dispatch<React.SetStateAction<HousesEnum>>;
 };
 
 type UseThemeProps = { children: React.ReactNode };
@@ -16,17 +16,23 @@ export const UseThemeContext = React.createContext<UseThemeData>(
 );
 
 export const ThemeProvider = ({ children }: UseThemeProps) => {
-  const localStorage =
-    typeof window !== "undefined" ? window.localStorage : null;
-
-  const [currentTheme, setCurrentTheme] = useState<HousesEnum>(
-    (localStorage &&
-      (localStorage.getItem(LocalStorageEnum.FAVORITE_HOUSE) as HousesEnum)) ||
-      HousesEnum.UNKNOWN,
+  const [currentHouse, setCurrentHouse] = useState<HousesEnum>(
+    HousesEnum.UNKNOWN,
   );
 
+  useEffect(() => {
+    setCurrentHouse(
+      (localStorage?.getItem(LocalStorageEnum.FAVORITE_HOUSE) as HousesEnum) ||
+        HousesEnum.UNKNOWN,
+    );
+  }, []);
+
+  useEffect(() => {
+    localStorage?.setItem(LocalStorageEnum.FAVORITE_HOUSE, currentHouse);
+  }, [currentHouse]);
+
   return (
-    <UseThemeContext.Provider value={{ currentTheme, setCurrentTheme }}>
+    <UseThemeContext.Provider value={{ currentHouse, setCurrentHouse }}>
       {children}
     </UseThemeContext.Provider>
   );
